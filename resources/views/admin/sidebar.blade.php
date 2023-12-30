@@ -1,40 +1,30 @@
 <nav class="navbar-default navbar-side" role="navigation">
   <div class="sidebar-collapse">
-      <ul class="nav" id="main-menu">
-       
+    <ul class="nav" id="main-menu">
+      
 
-          <li>
-              <a href="index.html" ><i class="fa fa-desktop "></i>Dashboard <span class="badge">Included</span></a>
-          </li>
-         
+        <li class="<?= $page_title == "Dashboard" ? 'active-link' :'';?>">
+            <a href="{{url('admin')}}"><i class="fa fa-desktop "></i>Dashboard</a>
+        </li>
 
-          <li>
-              <a href="ui.html"><i class="fa fa-table "></i>UI Elements  <span class="badge">Included</span></a>
-          </li>
-          <li class="active-link">
-              <a href="blank.html"><i class="fa fa-edit "></i>Blank Page  <span class="badge">Included</span></a>
-          </li>
+        <li class="<?= $page_title == "Posts" ? 'active-link' : '';?>">
+            <a href="{{url('admin/posts')}}"><i class="fa fa-table"></i>Posts</a>
+        </li>
 
+        <li class="<?= $page_title == "Categories" ? 'active-link' : '';?>">
+            <a href="{{url('admin/categories')}}"><i class="fa fa-edit "></i>Categories</a>
+        </li>
 
+        <li class="<?= $page_title == "Users" ? 'active-link' : '';?>">
+            <a href="{{url('admin/users')}}"><i class="fa fa-user"></i>Users</a>
+        </li>
 
-       <li>
-              <a href="#"><i class="fa fa-qrcode "></i>My Link One</a>
-          </li>
-          <li>
-              <a href="#"><i class="fa fa-bar-chart-o"></i>My Link Two</a>
-          </li>
+        <li>
+          <a href="{{url('/')}}"><i class="fa fa-home"></i>Frontend</a>
+        </li>
 
-          <li>
-              <a href="#"><i class="fa fa-edit "></i>My Link Three </a>
-          </li>
-          <li>
-              <a href="#"><i class="fa fa-table "></i>My Link Four</a>
-          </li>
-           <li>
-              <a href="#"><i class="fa fa-edit "></i>My Link Five </a>
-          </li>
-      </ul>
-                  </div>
+    </ul>
+  </div>
 
 </nav>
 <!-- /. NAV SIDE  -->

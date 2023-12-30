@@ -35,5 +35,8 @@ Route::get('signup', function () {
 Route::post('login', [LoginController::class,'save']);
 Route::post('signup', [SignupController::class,'save']);
 
-Route::match(['get', 'post'], 'admin', [AdminController::class,'index'])->middleware('auth');
+Route::get('admin', [AdminController::class,'index'])->middleware('auth');
+Route::get('admin/posts', [AdminController::class,'posts'])->middleware('auth');
+Route::get('admin/categories', [AdminController::class,'categories'])->middleware('auth');
+Route::get('admin/users', [AdminController::class,'users'])->middleware('auth');
 

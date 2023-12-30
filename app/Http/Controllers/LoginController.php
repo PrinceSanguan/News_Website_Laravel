@@ -23,7 +23,7 @@ class LoginController extends Controller
             'password'=>'required'
         ]);
 
-        if (Auth::attempt($validate))
+        if (Auth::attempt($validate, $req->input('remember')))
         {
             //Things go well
             $req->session()->regenerate();

@@ -33,8 +33,12 @@
                     @endforeach
                   </span>
                   @csrf
-                    <input type="email" name="email" placeholder="EMAIL" value="{{old('email')}}"/>
-                    <input type="password" name="password" placeholder="PASSWORD"/>
+                    <input class="input" type="email" name="email" placeholder="EMAIL" value="{{old('email')}}"/>
+                    <input class="input" type="password" name="password" placeholder="PASSWORD"/>
+                      <div class="check-box">
+                        <input class="form-check-input" id="remember" type="checkbox" name="remember">
+                        <label class="form-check-label" for="remember">Remember me?</label>
+                      </div>
                     <button class="opacity">SUBMIT</button>
                 </form>
                 <div class="register-forget opacity">

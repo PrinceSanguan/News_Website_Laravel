@@ -32,7 +32,8 @@ Route::get('signup', function () {
     return view('auth.signup');
 });
 
-route::post('login', [LoginController::class,'save']);
-route::post('signup', [SignupController::class,'save']);
+Route::post('login', [LoginController::class,'save']);
+Route::post('signup', [SignupController::class,'save']);
 
-route::post('admin', [AdminController::class,'index'])->middleware('auth');
+Route::match(['get', 'post'], 'admin', [AdminController::class,'index'])->middleware('auth');
+

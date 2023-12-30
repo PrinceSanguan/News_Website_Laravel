@@ -11,16 +11,9 @@ class AdminController extends Controller
 
     public function index(Request $req) 
     {
-        return view('view);
+        return view('admin.admin');
     }
 
-    public function save(Request $req) 
-    {
-        $validate = $req->validate([
-            'key'=>'required|string',
-            'key'=>'required|image',
-        ])
-        return view('view);
-    }
+
 }
-}
+

@@ -27,9 +27,14 @@
                 <img src="https://raw.githubusercontent.com/hicodersofficial/glassmorphism-login-form/master/assets/illustration.png" alt="illustration" class="illustration" />
                 <h1 class="opacity">LOGIN</h1>
                 <form method="post" action="{{url('login')}}">
+                  <span style="color: red;">
+                    @foreach ($errors->all() as $error)
+                        {{$error}}<br>
+                    @endforeach
+                  </span>
                   @csrf
-                    <input type="text" placeholder="USERNAME" />
-                    <input type="password" placeholder="PASSWORD" />
+                    <input type="email" name="email" placeholder="EMAIL" value="{{old('email')}}"/>
+                    <input type="password" name="password" placeholder="PASSWORD"/>
                     <button class="opacity">SUBMIT</button>
                 </form>
                 <div class="register-forget opacity">

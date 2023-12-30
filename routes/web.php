@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\SignupController;
+use App\Http\Controllers\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +24,15 @@ Route::get('/single', function () {
     return view('single');
 });
 
-Route::get('/login', function () {
-    return view('login');
+Route::get('login', function () {
+    return view('auth.login');
 });
+
+Route::get('signup', function () {
+    return view('auth.signup');
+});
+
+route::post('login', [LoginController::class,'save']);
+route::post('signup', [SignupController::class,'save']);
+
+route::post('admin', [AdminController::class,'index'])->middleware('auth');

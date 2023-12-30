@@ -1,7 +1,7 @@
 <!-- END #fh5co-Footer -->
 <footer id="fh5co-footer">
   <p><small>&copy; 2016. Magazine Free HTML5. All Rights Reserverd. <br>
-  <a href="{{url('login')}}">Login</a> -- <a href="{{url('register')}}" >Register</a></small></p>
+  <a href="{{url('login')}}">Login</a> -- <a href="{{url('signup')}}" >Register</a></small></p>
 </footer>
 
 

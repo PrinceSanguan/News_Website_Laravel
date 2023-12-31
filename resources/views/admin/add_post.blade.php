@@ -15,10 +15,37 @@
            <h2>{{$page_title}}</h2>   
           </div>
 
-          <form action="">
-            @csrf
-            <textarea name="content" id="summernote"></textarea>
-          </form>
+      <div class="container-fluid col-lg-12">
+            <form method="post" enctype="multipart/form-data">
+              
+              <div class="form-group row">
+                <label for="title" class="col-sm-2 col-form-label">Post Title</label>
+                <div class="col-sm-10">
+                  <input id="title" type="text" class="form-control" placeholder="Title" name="title" autofocus><br>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label for="file" class="col-sm-2 col-form-label">Feature Image</label>
+                <div class="col-sm-10">
+                  <input id="file" type="file" class="form-control" name="file">
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label for="category_id" class="col-sm-2 col-form-label">Post Category</label>
+                <div class="col-sm-10">
+                  <select id="category_id" name="category_id" class="form-control">
+                    <option value="">--Select a Category--</option>
+                  </select>
+                </div>
+              </div>
+
+                  @csrf
+                  <h4>Post Content</h4>
+                  <textarea name="content" id="summernote" style="min-height: 400px;"></textarea>
+            </form>
+          </div>
       </div>              
        <!-- /. ROW  -->
         <hr />

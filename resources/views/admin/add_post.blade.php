@@ -43,7 +43,9 @@
 
                   @csrf
                   <h4>Post Content</h4>
-                  <textarea name="content" id="summernote" style="min-height: 400px;"></textarea>
+                  <textarea name="content" id="summernote"></textarea>
+
+                  <input class="btn btn-primary" type="submit" value="post">
             </form>
           </div>
       </div>              
@@ -64,6 +66,8 @@
 
 <script>
   $(document).ready(function() {
-    $('#summernote').summernote();
+    $('#summernote').summernote({
+      height:400
+    });
   }); 
 </script>

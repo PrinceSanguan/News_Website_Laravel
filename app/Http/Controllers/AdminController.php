@@ -18,6 +18,10 @@ class AdminController extends Controller
     {
         switch ($type) {
             case 'add':
+                if ($req->method() == 'POST'){
+                   $req->file('file')->store('/', ['disks'=>'my_disk']);
+                }
+
                 return view('admin.add_post',['page_title'=>'New Posts']);
                 break;
 

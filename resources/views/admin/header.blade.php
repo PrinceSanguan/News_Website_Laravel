@@ -35,6 +35,10 @@
                   <a href="{{url('logout')}}" style="color:#fff;">LOGOUT</a>  
                 </span>
 
+                @auth
+                    <span style="color: white;">Hi, {{Auth::user()->name}}</span>
+                @endauth
+
             </div>
         </div>
         <!-- /. NAV TOP  -->

@@ -37,6 +37,9 @@ Route::post('signup', [SignupController::class,'save']);
 
 Route::get('admin', [AdminController::class,'index'])->middleware('auth');
 Route::get('admin/posts', [AdminController::class,'posts'])->middleware('auth');
+
+Route::get('admin/posts/{type}', [AdminController::class,'posts'])->middleware('auth');
+
 Route::get('admin/categories', [AdminController::class,'categories'])->middleware('auth');
 Route::get('admin/users', [AdminController::class,'users'])->middleware('auth');
 

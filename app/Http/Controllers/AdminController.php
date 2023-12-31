@@ -14,9 +14,25 @@ class AdminController extends Controller
         return view('admin.admin',['page_title'=>'Dashboard']);
     }
 
-    public function posts(Request $req) 
+    public function posts(Request $req, $type ='')
     {
-        return view('admin.posts',['page_title'=>'Posts']);
+        switch ($type) {
+            case 'add':
+                return view('admin.add_post',['page_title'=>'New Posts']);
+                break;
+
+            case 'edit':
+                return view('admin.posts',['page_title'=>'Edit Posts']);
+                break;
+
+            case 'delete':
+                return view('admin.posts',['page_title'=>'Delete Posts']);
+                break;
+
+            default:
+                return view('admin.posts',['page_title'=>'Posts']);
+                break;
+        }
     }
 
     public function categories(Request $req) 

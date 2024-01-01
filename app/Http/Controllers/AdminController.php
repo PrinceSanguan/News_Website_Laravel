@@ -58,7 +58,15 @@ class AdminController extends Controller
                 break;
 
             default:
-                return view('admin.posts',['page_title'=>'Posts']);
+                $post = new Post();
+
+                $rows =$post->all();
+                $data = [
+                    'rows' => $rows,
+                    'page_title' => 'Posts'
+                ];
+
+                return view('admin.posts', $data);
                 break;
         }
     }

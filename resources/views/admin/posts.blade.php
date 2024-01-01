@@ -20,16 +20,23 @@
               <tr>
                 <th>Title</th>
                 <th>Content</th>
+                <th>Featured Image</th>
                 <th>Date</th>
                 <th>Action</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
+              @if ($rows)
+                @foreach ($rows as $row)
+                  <tr>
+                    <td>{{$row->title}}</td>
+                    <td>{{$row->content}}</td>
+                    <td><img src="{{ asset('uploads/' . $row->image) }}" alt="Featured Image" style="max-width: 100px; max-height: 100px;"></td>
+                    <td>{{$row->created_at}}</td>
+                    <td>Edit | Delete</td>
+                  </tr>
+                @endforeach
+              @endif
             </tbody>
           </table>
 

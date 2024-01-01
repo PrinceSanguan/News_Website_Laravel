@@ -20,6 +20,7 @@
               <tr>
                 <th>Title</th>
                 <th>Content</th>
+                <th>Category</th>
                 <th>Featured Image</th>
                 <th>Date</th>
                 <th>Action</th>
@@ -31,6 +32,7 @@
                   <tr>
                     <td>{{$row->title}}</td>
                     <td>{{$row->content}}</td>
+                    <td>{{$row->category}}</td>
                     <td><img src="{{ asset('uploads/' . $row->image) }}" alt="Featured Image" style="max-width: 100px; max-height: 100px;"></td>
                     <td>{{$row->created_at}}</td>
                     <td>Edit | Delete</td>

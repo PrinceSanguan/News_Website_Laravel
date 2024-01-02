@@ -80,7 +80,7 @@ class AdminController extends Controller
                 
                         $post->where('id', $id)->update($data);
                 
-                        return redirect('admin/posts/edit/'.$id);
+                        return redirect('admin/posts');
                     }
                 
                     $row = $post->find($id);
@@ -90,10 +90,30 @@ class AdminController extends Controller
                     // Add break statement here if necessary
                     break;
         
-            case 'delete':
-            return view('admin.posts', ['page_title' => 'Delete Posts']);
-            break;
-            default:
+                    case 'delete':
+                        $post = new Post();
+                        $row = $post->find($id);
+                        $category = $row->category()->first();
+                    
+                        if ($req->isMethod('post')) {
+                            // Get the image path
+                            $imagePath = 'uploads/' . $row->image;
+                    
+                            // Delete the image file
+                            if (file_exists($imagePath)) {
+                                unlink($imagePath);
+                            }
+                    
+                            // Delete the post
+                            $post->where('id', $id)->delete();
+                    
+                            return redirect('admin/posts');
+                        }
+                    
+                
+                return view('admin.delete_post', ['page_title' => 'Delete Post', 'row' => $row, 'category' => $category]);
+                break;
+                default:
                 
                 $query = "select posts.*,categories.category from posts join categories on posts.category_id = categories.id";
                 $rows = DB::select($query);

@@ -18,18 +18,19 @@
       <div class="container-fluid col-lg-12">
             <form method="post" enctype="multipart/form-data">
 
+
               @if($errors->all())
-              <div class="alert alert-danger text-center">
-                @foreach ($errors->all() as $error)
-                    {{$error}}<br>
-                @endforeach
-              </div>
-            @endif
+                <div class="alert alert-danger text-center">
+                  @foreach ($errors->all() as $error)
+                      {{$error}}<br>
+                  @endforeach
+                </div>
+              @endif
 
               <div class="form-group row">
                 <label for="title" class="col-sm-2 col-form-label">Post Title</label>
                 <div class="col-sm-10">
-                  <input value="{{old('title')}}" id="title" type="text" class="form-control" placeholder="Title" name="title" autofocus><br>
+                  <input value="{{$row->title}}" id="title" type="text" class="form-control" placeholder="Title" name="title" autofocus><br>
                 </div>
               </div>
 
@@ -37,6 +38,7 @@
                 <label for="file" class="col-sm-2 col-form-label">Feature Image</label>
                 <div class="col-sm-10">
                   <input id="file" type="file" class="form-control" name="file">
+                  <img src="{{url('uploads/'.$row->image)}}" style="width: 200px;">
                 </div>
               </div>
 
@@ -51,9 +53,9 @@
 
                   @csrf
                   <h4>Post Content</h4>
-                  <textarea name="content" id="summernote">{{old('content')}}</textarea>
+                  <textarea name="content" id="summernote">{{$row->content}}</textarea>
 
-                  <input class="btn btn-primary" type="submit" value="post">
+                  <input class="btn btn-primary" type="submit" value="save">
             </form>
           </div>
       </div>              

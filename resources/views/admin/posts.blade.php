@@ -12,7 +12,10 @@
   <div id="page-inner">
       <div class="row">
           <div class="col-md-12">
-           <h2>{{$page_title}}</h2>   
+           <h2>{{$page_title}}</h2>
+           <a href="{{url('admin/posts/add')}}">
+            <button class="btn btn-primary btn-sm" style="float: right;"><i class="fa fa-plus"></i>Add Post</button>
+          </a> 
           </div>
 
           <table class="table table-striped table-hover">
@@ -34,7 +37,7 @@
                     <td>{{$row->content}}</td>
                     <td>{{$row->category}}</td>
                     <td><img src="{{ asset('uploads/' . $row->image) }}" alt="Featured Image" style="max-width: 100px; max-height: 100px;"></td>
-                    <td>{{$row->created_at}}</td>
+                    <td>{{date("jS M, Y",strtotime($row->created_at))}}</td>
                     <td>Edit | Delete</td>
                   </tr>
                 @endforeach

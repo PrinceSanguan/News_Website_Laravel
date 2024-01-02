@@ -15,7 +15,7 @@ class AdminController extends Controller
                     return view('admin.admin',['page_title'=>'Dashboard']);
                 }
 
-                public function posts(Request $req, $type = '')
+                public function posts(Request $req, $type = '', $id = '')
                 {   
                 switch ($type) {
                     case 'add':
@@ -50,17 +50,18 @@ class AdminController extends Controller
                 break;
 
             case 'edit':
-                return view('admin.posts',['page_title'=>'Edit Posts']);
-                break;
+
+                    $post = new Post();
+                    $row = $post->find($id); // Change $rows to $row
+                    return view('admin.edit_posts',['page_title'=>'Edit Posts', 'row' =>$row,]);
+                    break;
 
             case 'delete':
                 return view('admin.posts',['page_title'=>'Delete Posts']);
                 break;
 
             default:
-                /* $post = new Post();
-
-                $rows =$post->all(); */
+                
                 $query = "select posts.*,categories.category from posts join categories on posts.category_id = categories.id";
                 $rows = DB::select($query);
                 $data = [

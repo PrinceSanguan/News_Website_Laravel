@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Post;
+use App\Models\Category;
 
 class AdminController extends Controller
 {
@@ -162,7 +163,7 @@ class AdminController extends Controller
         break;
 
         case 'edit':
-            $post = new Post();
+            $category = new Category();
         
             if ($req->isMethod('post')) {
                 $validated = $req->validate([
@@ -180,7 +181,7 @@ class AdminController extends Controller
         
                 if ($req->hasFile('file') && $req->file('file')->isValid()) {
                     // Remove the old file
-                    $oldRow = $post->find($id);
+                    $oldRow = $category->find($id);
                     if (file_exists('uploads/' . $oldRow->image)) {
                         unlink('uploads/' . $oldRow->image);
                     }
@@ -190,15 +191,14 @@ class AdminController extends Controller
                     $data['image'] = $path;
                 }
         
-                $post->where('id', $id)->update($data);
+                $category->where('id', $id)->update($data);
         
-                return redirect('admin/posts');
+                return redirect('admin/categories/edit/' . $id);
             }
         
-            $row = $post->find($id);
-            $category = $row->category()->first();
+            $row = $category->find($id);
         
-            return view('admin.edit_posts', ['page_title' => 'Edit Posts', 'row' => $row, 'category' => $category]);
+            return view('admin.edit_category', ['page_title' => 'Edit Category', 'row' => $row,]);
             // Add break statement here if necessary
             break;
 

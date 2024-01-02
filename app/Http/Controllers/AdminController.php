@@ -52,8 +52,10 @@ class AdminController extends Controller
             case 'edit':
 
                     $post = new Post();
-                    $row = $post->find($id); // Change $rows to $row
-                    return view('admin.edit_posts',['page_title'=>'Edit Posts', 'row' =>$row,]);
+                    $row = $post->find($id);
+                    $category = $row->category()->first();
+
+                    return view('admin.edit_posts',['page_title'=>'Edit Posts', 'row' =>$row, 'category' => $category,]);
                     break;
 
             case 'delete':

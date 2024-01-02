@@ -46,7 +46,7 @@
                 <label for="category_id" class="col-sm-2 col-form-label">Post Category</label>
                 <div class="col-sm-10">
                   <select id="category_id" name="category_id" class="form-control">
-                    <option value="">--Select a Category--</option>
+                    <option value="{{$row->category_id}}">{{$category->category}}</option>
                   </select>
                 </div>
               </div>

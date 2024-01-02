@@ -56,6 +56,9 @@
                   <textarea name="content" id="summernote">{{$row->content}}</textarea>
 
                   <input class="btn btn-primary" type="submit" value="save">
+                    <a href="{{url('admin/posts')}}">
+                      <input class="btn btn-success" style="float:right" type="button" value="Back">
+                    </a>
             </form>
           </div>
       </div>              

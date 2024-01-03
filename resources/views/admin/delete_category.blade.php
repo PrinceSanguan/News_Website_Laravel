@@ -16,8 +16,7 @@
           </div>
 
       <div class="container-fluid col-lg-12">
-
-        <?php if($row):?>
+        <h4>Are you want to delete this category?</h4>
             <form method="post" enctype="multipart/form-data">
 
 
@@ -30,25 +29,18 @@
               @endif
 
               <div class="form-group row">
-                <label for="title" class="col-sm-2 col-form-label">Category Name</label>
+                <label for="category" class="col-sm-2 col-form-label">Category Name</label><br>
                 <div class="col-sm-10">
-                  <input value="{{$row->category}}" id="category" type="text" class="form-control" placeholder="Category" name="category" autofocus><br>
+                  <input disabled value="{{$row->category}}" id="category" type="text" class="form-control" placeholder="Category" name="category" autofocus><br>
                 </div>
               </div>
 
                   @csrf
-                    <input class="btn btn-primary" type="submit" value="save">
-
-                    <a href="{{url('admin/categories')}}">
+                  <input class="btn btn-danger" type="submit" value="Delete">
+                    <a href="{{url('admin/category')}}">
                       <input class="btn btn-success" style="float:right" type="button" value="Back">
                     </a>
             </form>
-            <?php else:?>
-              <br><div>Sorry, We could not find that Category!!</div><br>
-              <a href="{{url('admin/categories')}}">
-                <input class="btn btn-success" style="float:right" type="button" value="Back">
-              </a>
-            <?php endif;?>
           </div>
       </div>              
        <!-- /. ROW  -->
@@ -64,3 +56,4 @@
 <!---This is footer---->
 @include('admin.footer')
 <!---This is footerr---->
+<script src="{{url('summernote/summernote-lite.min.js')}}"></script>

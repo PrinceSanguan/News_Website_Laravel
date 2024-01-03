@@ -181,27 +181,15 @@ class AdminController extends Controller
             break;
 
             case 'delete':
-                $post = new Post();
-                $row = $post->find($id);
-                $category = $row->category()->first();
+                $category = new Category();
+                $row = $category->find($id);
+ 
+               // Delete the Category
+             $category->where('id', $id)->delete();
             
-                if ($req->isMethod('post')) {
-                    // Get the image path
-                    $imagePath = 'uploads/' . $row->image;
-            
-                    // Delete the image file
-                    if (file_exists($imagePath)) {
-                        unlink($imagePath);
-                    }
-            
-                    // Delete the post
-                    $post->where('id', $id)->delete();
-            
-                    return redirect('admin/posts');
-                }
-            
+            return redirect('admin/categories');
         
-        return view('admin.delete_post', ['page_title' => 'Delete Post', 'row' => $row, 'category' => $category]);
+        return view('admin.delete_category', ['page_title' => 'Delete Category', 'row' => $row,]);
         break;
         default:
         

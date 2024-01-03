@@ -44,6 +44,8 @@ class AdminController extends Controller
                     ];
 
                     $post->insert($data);
+
+                    return redirect('admin/posts');
                 }
             }
 
@@ -135,31 +137,23 @@ class AdminController extends Controller
             if ($req->isMethod('post')) {
 
                 $validated = $req->validate([
-                    'title' => 'required|string',
-                    'file' => 'required|image',
-                    'content' => 'required'
+                    'category' => 'required|string',
                 ]);
 
-        if ($req->hasFile('file') && $req->file('file')->isValid()) {
-
-            $post = new Post();
-
-            $path = $req->file('file')->store('/', ['disk' => 'my_disk']);
+            $category = new Category();
 
             $data = [
-                'title' => $req->input('title'),
-                'category_id' => 1,
-                'image' => $path,
-                'content' => $req->input('content'),
+                'category' => $req->input('category'),
                 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s")
             ];
 
-            $post->insert($data);
-        }
+            $category->insert($data);
+
+            return redirect('admin/categories');
     }
 
-        return view('admin.add_post',['page_title'=>'New Posts']);
+        return view('admin.add_category',['page_title'=>'New Category']);
         break;
 
         case 'edit':
@@ -167,29 +161,13 @@ class AdminController extends Controller
         
             if ($req->isMethod('post')) {
                 $validated = $req->validate([
-                    'title' => 'required|string',
-                    'file' => 'image',
-                    'content' => 'required'
+                    'category' => 'required|string',
                 ]);
         
                 $data = [
-                    'title' => $req->input('title'),
-                    'category_id' => $req->input('category_id'),
-                    'content' => $req->input('content'),
+                    'category' => $req->input('category'),
                     'updated_at' => now(),
                 ];
-        
-                if ($req->hasFile('file') && $req->file('file')->isValid()) {
-                    // Remove the old file
-                    $oldRow = $category->find($id);
-                    if (file_exists('uploads/' . $oldRow->image)) {
-                        unlink('uploads/' . $oldRow->image);
-                    }
-        
-                    // Upload the new file
-                    $path = $req->file('file')->store('/', ['disk' => 'my_disk']);
-                    $data['image'] = $path;
-                }
         
                 $category->where('id', $id)->update($data);
         

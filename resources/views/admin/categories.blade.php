@@ -22,7 +22,8 @@
             <thead>
               <tr>
                 <th>Category</th>
-                <th>Date</th>
+                <th>Date of Created</th>
+                <th>Date of Updated</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -32,6 +33,7 @@
                   <tr>
                     <td>{{$row->category}}</td>
                     <td>{{date("jS M, Y",strtotime($row->created_at))}}</td>
+                    <td>{{date("jS M, Y",strtotime($row->updated_at))}}</td>
                     <td>
                       <a href="{{url('admin/categories/edit/'.$row->id)}}">
                         <button class="btn-sm btn btn-success"><i class="fa fa-edit"></i>Edit</button>

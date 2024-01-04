@@ -13,17 +13,18 @@
       <div class="row">
           <div class="col-md-12">
            <h2>{{$page_title}}</h2>
-           <a href="{{url('admin/categories/add')}}">
-            <button class="btn btn-primary btn-sm" style="float: right;"><i class="fa fa-plus"></i>Add Category</button>
+           <a href="{{url('signup')}}">
+            <button class="btn btn-primary btn-sm" style="float: right;"><i class="fa fa-plus"></i>Add User</button>
           </a> 
           </div>
 
           <table class="table table-striped table-hover">
             <thead>
               <tr>
-                <th>Category</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Password</th>
                 <th>Date of Created</th>
-                <th>Date of Updated</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -31,9 +32,10 @@
               @if ($rows)
                 @foreach ($rows as $row)
                   <tr>
-                    <td>{{$row->category}}</td>
+                    <td>{{$row->name}}</td>
+                    <td>{{$row->email}}</td>
+                    <td>{{$row->password}}</td>
                     <td>{{date("jS M, Y",strtotime($row->created_at))}}</td>
-                    <td>{{date("jS M, Y",strtotime($row->updated_at))}}</td>
                     <td>
                       <a href="{{url('admin/categories/edit/'.$row->id)}}">
                         <button class="btn-sm btn btn-success"><i class="fa fa-edit"></i>Edit</button>

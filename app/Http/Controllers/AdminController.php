@@ -206,9 +206,81 @@ class AdminController extends Controller
         }
     }
 
-    public function users(Request $req) 
+    public function users(Request $req, $type = '', $id = '') 
     {   
-        return view('admin.admin',['page_title'=>'Users']);
+            switch ($type) {
+                case 'add':
+                if ($req->isMethod('post')) {
+    
+                    $validated = $req->validate([
+                        'category' => 'required|string',
+                    ]);
+    
+                $category = new Category();
+    
+                $data = [
+                    'category' => $req->input('category'),
+                    'created_at' => date("Y-m-d H:i:s"),
+                    'updated_at' => date("Y-m-d H:i:s")
+                ];
+    
+                $category->insert($data);
+    
+                return redirect('admin/categories');
+        }
+    
+            return view('admin.add_category',['page_title'=>'New Category']);
+            break;
+    
+            case 'edit':
+                $category = new Category();
+            
+                if ($req->isMethod('post')) {
+                    $validated = $req->validate([
+                        'category' => 'required|string',
+                    ]);
+            
+                    $data = [
+                        'category' => $req->input('category'),
+                        'updated_at' => now(),
+                    ];
+            
+                    $category->where('id', $id)->update($data);
+            
+                    return redirect('admin/categories/edit/' . $id);
+                }
+            
+                $row = $category->find($id);
+            
+                return view('admin.edit_category', ['page_title' => 'Edit Category', 'row' => $row,]);
+                // Add break statement here if necessary
+                break;
+    
+                case 'delete':
+                    $category = new Category();
+                    $row = $category->find($id);
+     
+                   // Delete the Category
+                 $category->where('id', $id)->delete();
+                
+                return redirect('admin/categories');
+            
+            return view('admin.delete_category', ['page_title' => 'Delete Category', 'row' => $row,]);
+            break;
+            default:
+            
+            $query = "select * from users order by id desc";
+    
+            $rows = DB::select($query);
+            $data = [
+                'rows' => $rows,
+                'page_title' => 'Users'
+            ];
+    
+            return view('admin.users', $data);
+            break;
+            }
+
     }
 
 

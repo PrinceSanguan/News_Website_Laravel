@@ -30,7 +30,7 @@ Route::get('login', function () {
 
 Route::get('signup', function () {
     return view('auth.signup');
-});
+})->middleware('auth');
 
 Route::post('login', [LoginController::class,'save']);
 Route::post('signup', [SignupController::class,'save']);

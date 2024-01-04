@@ -66,10 +66,3 @@
 <!---This is footer---->
 @include('admin.footer')
 <!---This is footerr---->
-<script src="{{url('summernote/summernote-lite.min.js')}}"></script>
-
-<script>
-  $(document).ready(function() {
-    $('#summernote').summernote();
-  }); 
-</script>

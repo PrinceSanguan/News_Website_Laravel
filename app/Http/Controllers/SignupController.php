@@ -34,7 +34,7 @@ class SignupController extends Controller
             'updated_at' => $date
         ]);
 
-        return redirect('login');
+        return redirect('admin/users');
     }
 }
 

@@ -37,10 +37,10 @@
                     <td>{{$row->password}}</td>
                     <td>{{date("jS M, Y",strtotime($row->created_at))}}</td>
                     <td>
-                      <a href="{{url('admin/categories/edit/'.$row->id)}}">
+                      <a href="{{url('admin/users/edit/'.$row->id)}}">
                         <button class="btn-sm btn btn-success"><i class="fa fa-edit"></i>Edit</button>
                       </a>
-                      <a href="{{url('admin/categories/delete/'.$row->id)}}">
+                      <a href="{{url('admin/users/delete/'.$row->id)}}">
                         <button class="btn-sm btn btn-danger"><i class="fa fa-times"></i>Delete</button>
                       </a>
                     </td>

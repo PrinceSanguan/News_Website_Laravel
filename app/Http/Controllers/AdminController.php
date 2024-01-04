@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Post;
 use App\Models\Category;
+use App\Models\User;
 
 class AdminController extends Controller
 {
@@ -209,63 +210,41 @@ class AdminController extends Controller
     public function users(Request $req, $type = '', $id = '') 
     {   
             switch ($type) {
-                case 'add':
-                if ($req->isMethod('post')) {
-    
-                    $validated = $req->validate([
-                        'category' => 'required|string',
-                    ]);
-    
-                $category = new Category();
-    
-                $data = [
-                    'category' => $req->input('category'),
-                    'created_at' => date("Y-m-d H:i:s"),
-                    'updated_at' => date("Y-m-d H:i:s")
-                ];
-    
-                $category->insert($data);
-    
-                return redirect('admin/categories');
-        }
-    
-            return view('admin.add_category',['page_title'=>'New Category']);
-            break;
-    
+
             case 'edit':
-                $category = new Category();
+                $user = new User();
             
                 if ($req->isMethod('post')) {
                     $validated = $req->validate([
-                        'category' => 'required|string',
+                        'name' => 'required|string',
                     ]);
             
                     $data = [
-                        'category' => $req->input('category'),
+                        'name' => $req->input('name'),
                         'updated_at' => now(),
                     ];
             
-                    $category->where('id', $id)->update($data);
+                    $user->where('id', $id)->update($data);
             
-                    return redirect('admin/categories/edit/' . $id);
+                    return redirect('admin/users/edit/' . $id);
                 }
             
-                $row = $category->find($id);
+                $row = $user->find($id);
             
-                return view('admin.edit_category', ['page_title' => 'Edit Category', 'row' => $row,]);
+                return view('admin.edit_user', ['page_title' => 'Edit User', 'row' => $row,]);
                 // Add break statement here if necessary
                 break;
     
                 case 'delete':
-                    $category = new Category();
-                    $row = $category->find($id);
+                    $user = new User();
+                    $row = $user->find($id);
      
                    // Delete the Category
-                 $category->where('id', $id)->delete();
+                 $user->where('id', $id)->delete();
                 
-                return redirect('admin/categories');
+                return redirect('admin/users');
             
-            return view('admin.delete_category', ['page_title' => 'Delete Category', 'row' => $row,]);
+            return view('admin.delete_user', ['page_title' => 'Delete Category', 'row' => $row,]);
             break;
             default:
             

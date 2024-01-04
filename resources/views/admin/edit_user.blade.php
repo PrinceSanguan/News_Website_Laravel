@@ -28,11 +28,27 @@
               @endif
 
               <div class="form-group row">
-                <label for="title" class="col-sm-2 col-form-label">Category Name</label>
+                <label for="name" class="col-sm-2 col-form-label">User Name</label>
                 <div class="col-sm-10">
-                  <input value="{{$row->category}}" id="category" type="text" class="form-control" placeholder="Category" name="category" autofocus><br>
+                  <input value="{{$row->name}}" id="name" type="text" class="form-control" placeholder="Name" name="name" autofocus><br>
                 </div>
               </div>
+
+              <div class="form-group row">
+                <label for="email" class="col-sm-2 col-form-label">Email</label>
+                <div class="col-sm-10">
+                  <input value="{{$row->email}}" id="email" type="text" class="form-control" placeholder="Email" name="email" autofocus><br>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label for="password" class="col-sm-2 col-form-label">Password</label>
+                <div class="col-sm-10">
+                  <input value="" id="password" type="text" class="form-control" placeholder="Email" name="password" autofocus><br>
+                  <small>leave a password empty if you dont want to change it!</small>
+                </div>
+              </div>
+
 
                   @csrf
                     <input class="btn btn-primary" type="submit" value="save">
@@ -43,7 +59,7 @@
             </form>
             <?php else:?>
               <br><div>Sorry, We could not find that Category!!</div><br>
-              <a href="{{url('admin/categories')}}">
+              <a href="{{url('admin/users')}}">
                 <input class="btn btn-success" style="float:right" type="button" value="Back">
               </a>
             <?php endif;?>

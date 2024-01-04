@@ -37,6 +37,10 @@
                     <input type=text" placeholder="EMAIL" name="email" value="{{old('email')}}"/>
                     <input type="password" placeholder="PASSWORD" name="password" value="{{old('password')}}"/>
                     <button class="opacity">CREATE</button>
+
+                    <a href="{{url('admin/users')}}">
+                      <button type="button">BACK</button>
+                    </a>
                 </form>
                 <div class="register-forget opacity">
                 </div>

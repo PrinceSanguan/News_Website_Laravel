@@ -9,11 +9,10 @@ class Post extends Model
 {
     use HasFactory;
 
-    public $timestaps = true;
+    public $timestamps = true; // Corrected
 
     public function category()
     {
         return $this->hasMany(Category::class, 'id', 'category_id');
     }
-
 }

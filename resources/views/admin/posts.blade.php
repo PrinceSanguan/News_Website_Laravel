@@ -2,8 +2,6 @@
 @include('admin.header')
 <!---This is Header---->
 
-<link href="{{url('summernote/summernote-lite.min.css')}}" rel="stylesheet" />
-
 <!---This is Sidebar---->
 @include('admin.sidebar')
 <!---This is Sidebar---->

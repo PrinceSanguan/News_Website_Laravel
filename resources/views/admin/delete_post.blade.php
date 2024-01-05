@@ -2,8 +2,6 @@
 @include('admin.header')
 <!---This is Header---->
 
-<link href="{{url('summernote/summernote-lite.min.css')}}" rel="stylesheet" />
-
 <!---This is Sidebar---->
 @include('admin.sidebar')
 <!---This is Sidebar---->
@@ -42,7 +40,7 @@
               </div>
 
                   @csrf
-                  <input class="btn btn-danger" type="submit" value="Delete">
+                  <input class="btn btn-danger" type="submit" value="delete">
                     <a href="{{url('admin/posts')}}">
                       <input class="btn btn-success" style="float:right" type="button" value="Back">
                     </a>

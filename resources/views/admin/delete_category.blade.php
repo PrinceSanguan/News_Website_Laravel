@@ -36,8 +36,8 @@
               </div>
 
                   @csrf
-                  <input class="btn btn-danger" type="submit" value="Delete">
-                    <a href="{{url('admin/category')}}">
+                  <input class="btn btn-danger" type="submit" value="delete">
+                    <a href="{{url('admin/users')}}">
                       <input class="btn btn-success" style="float:right" type="button" value="Back">
                     </a>
             </form>

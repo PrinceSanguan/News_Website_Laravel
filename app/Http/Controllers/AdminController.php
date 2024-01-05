@@ -217,16 +217,22 @@ class AdminController extends Controller
                 if ($req->isMethod('post')) {
                     $validated = $req->validate([
                         'name' => 'required|string',
+                        'email' => 'required|email',
                     ]);
             
                     $data = [
                         'name' => $req->input('name'),
+                        'email' => $req->input('email'),
                         'updated_at' => now(),
                     ];
+
+                    if(!empty($req->input('password'))) {
+                        $data['password'] = $req->input('password');
+                    }
             
                     $user->where('id', $id)->update($data);
             
-                    return redirect('admin/users/edit/' . $id);
+                    return redirect('admin/users/' . $id);
                 }
             
                 $row = $user->find($id);
@@ -239,10 +245,19 @@ class AdminController extends Controller
                     $user = new User();
                     $row = $user->find($id);
      
-                   // Delete the Category
-                 $user->where('id', $id)->delete();
+                    if ($req->isMethod('post')) {
+
+                        if($row->id != 1) {
+
+                    // Delete the post
+                    $user->where('id', $id)->delete();
+
+                    }
+
+                        
                 
-                return redirect('admin/users');
+                        return redirect('admin/users');
+                    }
             
             return view('admin.delete_user', ['page_title' => 'Delete Category', 'row' => $row,]);
             break;

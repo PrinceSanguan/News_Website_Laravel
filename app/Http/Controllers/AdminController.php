@@ -46,8 +46,9 @@ class AdminController extends Controller
 
                     $post->insert($data);
 
-                    return redirect('admin/posts');
+                    
                 }
+                return redirect('admin/posts');
             }
 
                 return view('admin.add_post',['page_title'=>'New Posts']);
@@ -55,43 +56,14 @@ class AdminController extends Controller
 
                 case 'edit':
                     $post = new Post();
-                
-                    if ($req->isMethod('post')) {
-                        $validated = $req->validate([
-                            'title' => 'required|string',
-                            'file' => 'image',
-                            'content' => 'required'
-                        ]);
-                
-                        $data = [
-                            'title' => $req->input('title'),
-                            'category_id' => $req->input('category_id'),
-                            'content' => $req->input('content'),
-                            'updated_at' => now(),
-                        ];
-                
-                        if ($req->hasFile('file') && $req->file('file')->isValid()) {
-                            // Remove the old file
-                            $oldRow = $post->find($id);
-                            if (file_exists('uploads/' . $oldRow->image)) {
-                                unlink('uploads/' . $oldRow->image);
-                            }
-                
-                            // Upload the new file
-                            $path = $req->file('file')->store('/', ['disk' => 'my_disk']);
-                            $data['image'] = $path;
-                        }
-                
-                        $post->where('id', $id)->update($data);
-                
-                        return redirect('admin/posts');
-                    }
-                
                     $row = $post->find($id);
-                    $category = $row->category()->first();
-                
-                    return view('admin.edit_posts', ['page_title' => 'Edit Posts', 'row' => $row, 'category' => $category]);
-                    // Add break statement here if necessary
+                    $category = $row->category();
+
+                    return view('admin.edit_posts',[
+                        'page_title'=>'Edit Post',
+                        'row'=>$row,
+                        'category'=>$category,
+                    ]);
                     break;
         
                     case 'delete':

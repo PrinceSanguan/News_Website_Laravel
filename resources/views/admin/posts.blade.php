@@ -31,19 +31,19 @@
               @if ($rows)
                 @foreach ($rows as $row)
                   <tr>
-                    <td>{{$row->title}}</td>
+                    <td></td>
                     <td>{{$row->content}}</td>
-                    <td>{{$row->category}}</td>
-                    <td><img src="{{ asset('uploads/' . $row->image) }}" alt="Featured Image" style="max-width: 100px; max-height: 100px;"></td>
+                    {{-- <td>{{$row->category}}</td> --}}
+                     <td><img src="{{ asset('uploads/' . $row->image) }}" alt="Featured Image" style="max-width: 100px; max-height: 100px;"></td>
                     <td>{{date("jS M, Y",strtotime($row->created_at))}}</td>
-                    <td>
+                     <td>
                       <a href="{{url('admin/posts/edit/'.$row->id)}}">
                         <button class="btn-sm btn btn-success"><i class="fa fa-edit"></i>Edit</button>
                       </a>
                       <a href="{{url('admin/posts/delete/'.$row->id)}}">
                         <button class="btn-sm btn btn-danger"><i class="fa fa-times"></i>Delete</button>
                       </a>
-                    </td>
+                    </td> 
                   </tr>
                 @endforeach
               @endif

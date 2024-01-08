@@ -26,6 +26,7 @@
               </div>
             @endif
 
+            
               <div class="form-group row">
                 <label for="title" class="col-sm-2 col-form-label">Post Title</label>
                 <div class="col-sm-10">
@@ -44,7 +45,7 @@
                 <label for="category_id" class="col-sm-2 col-form-label">Post Category</label>
                 <div class="col-sm-10">
                   <select id="category_id" name="category_id" class="form-control">
-                    <option value="">--Select a Category--</option>
+                    <option value="{{$row->category_id}}">{{$row->category}}</option>
                   </select>
                 </div>
               </div>
@@ -56,6 +57,7 @@
                   <input class="btn btn-primary" type="submit" value="post">
             </form>
           </div>
+          
       </div>              
        <!-- /. ROW  -->
         <hr />

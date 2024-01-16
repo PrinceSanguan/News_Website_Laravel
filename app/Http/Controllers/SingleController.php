@@ -11,16 +11,21 @@ class SingleController extends Controller
 
     public function index(Request $req) 
     {
-        return view('view);
+
+        $query = "select * from categories order by id desc";
+        $categories = DB::select($query);
+
+        $data['categories'] = $categories;
+        return view('single', $data);
     }
 
     public function save(Request $req) 
     {
         $validate = $req->validate([
             'key'=>'required|string',
-            'key'=>'required|image',
-        ])
-        return view('view);
+            'key'=>'required|image'
+        ]);
+        return view('single');
     }
 }
-}
+

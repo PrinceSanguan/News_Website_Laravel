@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Post;
 use App\Models\Category;
 use App\Models\User;
+use App\Models\Image;
 
 class AdminController extends Controller
 {
@@ -34,6 +35,7 @@ class AdminController extends Controller
                     $post = new Post();
 
                     $path = $req->file('file')->store('/', ['disk' => 'my_disk']);
+                    $slug = $post->str_to_url($req->input('title'));
 
                     $data = [
                         'title' => $req->input('title'),
@@ -41,23 +43,25 @@ class AdminController extends Controller
                         'image' => $path,
                         'content' => $req->input('content'),
                         'created_at' => date("Y-m-d H:i:s"),
-                        'updated_at' => date("Y-m-d H:i:s")
+                        'updated_at' => date("Y-m-d H:i:s"),
+                        'slag' => $slug
                     ];
 
-                    $post->insert($data);
-
-                    
-                }
+                    $post->insert($data);        
+                
                 return redirect('admin/posts');
+                }
             }
+            $query = "select * from categories order by id desc";
+            $categories = DB::select($query);
 
-                return view('admin.add_post',['page_title'=>'New Posts']);
+                return view('admin.add_post',['page_title'=>'New Posts', 'categories'=>$categories]);
                 break;
 
                 case 'edit':
                     $post = new Post();
                     $row = $post->find($id);
-                    $category = $row->category();
+                    $category = $row->category()->first();
 
                     return view('admin.edit_posts',[
                         'page_title'=>'Edit Post',
@@ -90,9 +94,16 @@ class AdminController extends Controller
                 return view('admin.delete_post', ['page_title' => 'Delete Post', 'row' => $row, 'category' => $category]);
                 break;
                 default:
-                
+                 
                 $query = "select posts.*,categories.category from posts join categories on posts.category_id = categories.id";
+                
+                $img = new Image();
+
                 $rows = DB::select($query);
+
+                foreach ($rows as $key => $row) {
+                    $rows[$key]->image = $img->get_thumb('uploads/'.$row->image);
+                }
                 $data = [
                     'rows' => $rows,
                     'page_title' => 'Posts'

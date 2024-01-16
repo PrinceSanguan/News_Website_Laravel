@@ -65,11 +65,9 @@
 			<div class="fh5co-box">
 				<h3 class="heading">Categories</h3>
 				<ul>
-					<li><a href="#">Travel</a></li>
-					<li><a href="#">Style</a></li>
-					<li><a href="#">Photography</a></li>
-					<li><a href="#">Food &amp; Drinks</a></li>
-					<li><a href="#">Culture</a></li>
+					<?php foreach($categories as $category):?>
+						<li><a href="#">{{$category->category}}</a></li>
+					<?php endforeach;?>
 				</ul>
 			</div>
 			<div class="fh5co-box">
